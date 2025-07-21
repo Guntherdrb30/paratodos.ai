@@ -1,0 +1,116 @@
+Resumen del Proyecto: Backend y Frontend
+
+1. Backend: Flask + Firebase Admin
+----------------------------------
+Tecnologías:
+  - Python 3
+  - Flask
+  - Flask-CORS
+  - python-dotenv
+  - Firebase Admin SDK (Firestore + Storage)
+
+Dependencias clave (requirements.txt):
+  Flask==2.2.5
+  firebase-admin==6.1.0
+  flask-cors==3.0.10
+  python-dotenv==1.0.0
+
+Estructura principal:
+  backend/
+  ├─ app.py
+  ├─ .env.example
+  ├─ controllers/
+  ├─ models/
+  ├─ routes/
+  └─ utils/
+     └─ firebase_admin.py
+
+Endpoints CRUD:
+  - Usuarios (/api/users)
+  - Productos (/api/products) con soporte de multipart/form-data para imágenes
+
+Estado actual & pasos para desarrollo local:
+  1. Copiar .env.example a .env y configurar GOOGLE_APPLICATION_CREDENTIALS y FIREBASE_STORAGE_BUCKET.
+  2. Instalar dependencias: pip install -r requirements.txt
+  3. Ejecutar la aplicación: python app.py
+  4. Acceder a la API en http://localhost:5000/
+
+2. Frontend: Next.js + React + Tailwind CSS
+-------------------------------------------
+Tecnologías:
+  - Next.js 13.4
+  - React 18
+  - Tailwind CSS
+  - PostCSS & Autoprefixer
+  - Axios
+  - react-icons
+  - Firebase JS SDK
+  - OpenAI (openai)
+  - XLSX
+  - pdfmake
+
+Dependencias clave (package.json):
+  next@13.4.12
+  react@18.2.0
+  react-dom@18.2.0
+  tailwindcss@^3.4.17
+  firebase@^10.0.0
+  axios@^1.4.0
+  react-icons@^5.5.0
+  openai@^4.19.0
+  xlsx@^0.18.5
+  pdfmake@^0.2.7
+
+Proxy a Backend (/api/*):
+  next.config.js redirige /api/* a http://localhost:5000/api/* en desarrollo.
+
+Configuración de Tailwind:
+  tailwind.config.js con colores custom (primary, secondary, accent).
+
+Cliente de Firebase:
+  frontend/firebase/config.js inicializa auth, Firestore y Storage.
+
+Módulo Asesor (OpenAI):
+  /pages/api/advisor.js invoca a OpenAI ChatCompletion.
+
+Estructura de páginas:
+  pages/index.jsx:
+    Header, Navbar, Hero, CategorySection,
+    FeaturedProducts, HomeLinksSection, Footer.
+
+  Otras páginas:
+    /pages/auth, /pages/tienda, /pages/dashboard (roles y módulos).
+
+  Carpetas:
+    components/, context/, layout/, utils/
+
+3. Variables de entorno
+-----------------------
+Backend:
+  - GOOGLE_APPLICATION_CREDENTIALS
+  - FIREBASE_STORAGE_BUCKET
+
+Frontend:
+  - OPENAI_API_KEY
+
+4. Puesta en producción
+-----------------------
+Backend:
+  - Servidor WSGI (Gunicorn/uWSGI) o Docker (Cloud Run, Heroku, AWS EB).
+  - SSL, dominios, variables de entorno seguras.
+  - Logging y monitorización.
+
+Frontend:
+  - next build && next start o despliegue en Vercel/Netlify.
+  - CDN para assets estáticos.
+  - Variables de entorno en la plataforma.
+
+CI/CD:
+  - Tests automáticos y pipeline de build/deploy.
+
+Seguridad:
+  - Revisar CORS y orígenes.
+  - Autenticación/roles (JWT/Firebase Auth).
+
+Escalabilidad:
+  - Servicios independientes y serverless para escalado automático.

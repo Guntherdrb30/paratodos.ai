@@ -1,0 +1,20 @@
+{
+  "..\\components\\InventoryTable.jsx -> pdfmake/build/pdfmake": {
+    "id": "..\\components\\InventoryTable.jsx -> pdfmake/build/pdfmake",
+    "files": [
+      "static/chunks/node_modules_pdfmake_build_pdfmake_js.js"
+    ]
+  },
+  "..\\components\\InventoryTable.jsx -> pdfmake/build/vfs_fonts": {
+    "id": "..\\components\\InventoryTable.jsx -> pdfmake/build/vfs_fonts",
+    "files": [
+      "static/chunks/node_modules_pdfmake_build_vfs_fonts_js.js"
+    ]
+  },
+  "..\\components\\ProvidersModule.jsx -> pdfmake/build/pdfmake": {
+    "id": "..\\components\\ProvidersModule.jsx -> pdfmake/build/pdfmake",
+    "files": [
+      "static/chunks/node_modules_pdfmake_build_pdfmake_js.js"
+    ]
+  }
+}

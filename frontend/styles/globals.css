@@ -1,0 +1,10 @@
+@tailwind base;
+@tailwind components;
+
+@layer base {
+  body {
+    @apply font-sans bg-accent text-secondary;
+  }
+}
+
+@tailwind utilities;

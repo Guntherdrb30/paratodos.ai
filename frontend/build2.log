@@ -1,0 +1,40 @@
+
+> carpihogarfrontend@1.0.0 build
+> next build
+
+- info Linting and checking validity of types...
+- info Creating an optimized production build...
+Error: Cannot apply unknown utility class `font-sans`. Are you using CSS modules or similar and missing `@reference`? https://tailwindcss.com/docs/functions-and-directives#reference-directive
+    at onInvalidCandidate (D:\carpihogarfinal\frontend\node_modules\tailwindcss\dist\lib.js:18:1312)
+    at ge (D:\carpihogarfinal\frontend\node_modules\tailwindcss\dist\lib.js:13:29803)
+    at D:\carpihogarfinal\frontend\node_modules\tailwindcss\dist\lib.js:18:373
+    at z (D:\carpihogarfinal\frontend\node_modules\tailwindcss\dist\lib.js:3:1656)
+    at Le (D:\carpihogarfinal\frontend\node_modules\tailwindcss\dist\lib.js:18:172)
+    at ki (D:\carpihogarfinal\frontend\node_modules\tailwindcss\dist\lib.js:35:780)
+    at async bi (D:\carpihogarfinal\frontend\node_modules\tailwindcss\dist\lib.js:35:1123)
+    at async _r (D:\carpihogarfinal\frontend\node_modules\@tailwindcss\node\dist\index.js:10:3384)
+    at async p (D:\carpihogarfinal\frontend\node_modules\@tailwindcss\postcss\dist\index.js:10:4019)
+    at async Object.Once (D:\carpihogarfinal\frontend\node_modules\@tailwindcss\postcss\dist\index.js:10:4290)
+- info Compiled successfully
+- info Collecting page data...
+- info Generating static pages (0/4)
+- info Generating static pages (1/4)
+- info Generating static pages (2/4)
+- info Generating static pages (3/4)
+- info Generating static pages (4/4)
+- info Finalizing page optimization...
+
+Route (pages)                              Size     First Load JS
+┌ ○ /                                      348 B          74.4 kB
+├   /_app                                  0 B            74.1 kB
+├ ○ /404                                   181 B          74.2 kB
+└ ○ /auth/login (471 ms)                   41.8 kB         116 kB
++ First Load JS shared by all              74.1 kB
+  ├ chunks/framework-7a7e500878b44665.js   45.2 kB
+  ├ chunks/main-0a9b5d9f75e3dd77.js        27.8 kB
+  ├ chunks/pages/_app-2dfd096757008a0f.js  296 B
+  ├ chunks/webpack-ee7e63bc15b31913.js     818 B
+  └ css/ef46db3751d8e999.css               20 B
+
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+

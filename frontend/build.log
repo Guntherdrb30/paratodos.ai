@@ -1,0 +1,62 @@
+
+> carpihogarfrontend@1.0.0 build
+> next build
+
+- info Linting and checking validity of types...
+- info Creating an optimized production build...
+Failed to compile.
+
+./styles/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[1].oneOf[13].use[1]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[1].oneOf[13].use[2]!./styles/globals.css
+Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+    at We (D:\carpihogarfinal\frontend\node_modules\tailwindcss\dist\lib.js:35:2121)
+    at LazyResult.runOnRoot (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:339:16)
+    at LazyResult.runAsync (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:393:26)
+    at LazyResult.async (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:221:30)
+    at LazyResult.then (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:206:17)
+
+Import trace for requested module:
+./styles/globals.css.webpack[javascript/auto]!=!./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[1].oneOf[13].use[1]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[1].oneOf[13].use[2]!./styles/globals.css
+./styles/globals.css
+
+./styles/globals.css
+Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+    at We (D:\carpihogarfinal\frontend\node_modules\tailwindcss\dist\lib.js:35:2121)
+    at LazyResult.runOnRoot (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:339:16)
+    at LazyResult.runAsync (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:393:26)
+    at LazyResult.async (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:221:30)
+    at LazyResult.then (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:206:17)
+    at tryRunOrWebpackError (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:28:311493)
+    at __webpack_require_module__ (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:28:131117)
+    at __nested_webpack_require_153754__ (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:28:130556)
+    at D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:28:131409
+    at symbolIterator (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\neo-async\async.js:1:14444)
+    at done (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\neo-async\async.js:1:14824)
+    at Hook.eval [as callAsync] (eval at create (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:13:28867), <anonymous>:15:1)
+    at Hook.CALL_ASYNC_DELEGATE [as _callAsync] (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:13:26021)
+    at D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:28:130276
+    at symbolIterator (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\neo-async\async.js:1:14402)
+-- inner error --
+Error: It looks like you're trying to use `tailwindcss` directly as a PostCSS plugin. The PostCSS plugin has moved to a separate package, so to continue using Tailwind CSS with PostCSS you'll need to install `@tailwindcss/postcss` and update your PostCSS configuration.
+    at We (D:\carpihogarfinal\frontend\node_modules\tailwindcss\dist\lib.js:35:2121)
+    at LazyResult.runOnRoot (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:339:16)
+    at LazyResult.runAsync (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:393:26)
+    at LazyResult.async (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:221:30)
+    at LazyResult.then (D:\carpihogarfinal\frontend\node_modules\next\node_modules\postcss\lib\lazy-result.js:206:17)
+    at Object.<anonymous> (D:\carpihogarfinal\frontend\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[1].oneOf[13].use[1]!D:\carpihogarfinal\frontend\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[1].oneOf[13].use[2]!D:\carpihogarfinal\frontend\styles\globals.css:1:7)
+    at D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:28:915095
+    at Hook.eval [as call] (eval at create (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:13:28645), <anonymous>:7:1)
+    at Hook.CALL_DELEGATE [as _call] (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:13:25915)
+    at D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:28:131150
+    at tryRunOrWebpackError (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:28:311447)
+    at __webpack_require_module__ (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:28:131117)
+    at __nested_webpack_require_153754__ (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:28:130556)
+    at D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\webpack\bundle5.js:28:131409
+    at symbolIterator (D:\carpihogarfinal\frontend\node_modules\next\dist\compiled\neo-async\async.js:1:14444)
+
+Generated code for D:\carpihogarfinal\frontend\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[1].oneOf[13].use[1]!D:\carpihogarfinal\frontend\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[1].oneOf[13].use[2]!D:\carpihogarfinal\frontend\styles\globals.css
+
+Import trace for requested module:
+./styles/globals.css
+
+
+> Build failed because of webpack errors

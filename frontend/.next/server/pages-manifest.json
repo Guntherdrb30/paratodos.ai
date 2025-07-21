@@ -1,0 +1,12 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/dashboard/root/inventario": "pages/dashboard/root/inventario.js",
+  "/dashboard/root/proyectos": "pages/dashboard/root/proyectos.js",
+  "/dashboard/root": "pages/dashboard/root.js",
+  "/dashboard/root/proveedores": "pages/dashboard/root/proveedores.js",
+  "/dashboard/root/productos": "pages/dashboard/root/productos.js",
+  "/dashboard/root/configuracion": "pages/dashboard/root/configuracion.js",
+  "/dashboard/root/usuarios": "pages/dashboard/root/usuarios.js"
+}

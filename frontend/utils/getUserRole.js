@@ -1,24 +1,27 @@
-import { db } from '../firebase/config'
 import { doc, getDoc } from 'firebase/firestore'
+import { db } from '../firebase/config'
 
+/**
+ * Busca el rol del usuario en las colecciones "users" y "user".
+ * @param {string} userId - UID del usuario autenticado.
+ * @returns {Promise<string|null>} Rol encontrado o `null` si no existe.
+ */
 export async function getUserRole(userId) {
+  if (!userId) return null
   try {
-    if (!userId) return null
-
-    let data = null
-    const refUsers = doc(db, 'users', userId)
-    const snapUsers = await getDoc(refUsers)
-    if (snapUsers.exists()) {
-      data = snapUsers.data()
-    } else {
-      const refUser = doc(db, 'user', userId)
-      const snapUser = await getDoc(refUser)
-      if (snapUser.exists()) {
-        data = snapUser.data()
-      }
+    const usersSnap = await getDoc(doc(db, 'users', userId))
+    if (usersSnap.exists()) {
+      const data = usersSnap.data()
+      return data.role ?? data.rol ?? null
     }
 
-    return data?.rol ?? data?.role ?? null
+    const userSnap = await getDoc(doc(db, 'user', userId))
+    if (userSnap.exists()) {
+      const data = userSnap.data()
+      return data.role ?? data.rol ?? null
+    }
+
+    return null
   } catch (error) {
     console.error('Error obteniendo rol de usuario:', error)
     return null

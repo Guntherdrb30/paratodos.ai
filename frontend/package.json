@@ -4,8 +4,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "test": "node --test"
   },
+  "type": "module",
   "dependencies": {
     "firebase": "^10.0.0",
     "next": "13.4.12",

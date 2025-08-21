@@ -19,6 +19,7 @@ export default function Login() {
       const result = await signInWithPopup(auth, provider)
       const user = result.user
       console.log("Usuario autenticado:", user)
+      // Obtiene el rol del usuario y redirige según corresponda
       const role = await getUserRole(user.uid)
       redirectByRole(router, role)
     } catch (error) {
@@ -31,6 +32,7 @@ export default function Login() {
       const result = await signInWithEmailAndPassword(auth, email, password)
       const user = result.user
       console.log('Usuario autenticado:', user)
+      // Obtiene el rol del usuario y redirige según corresponda
       const role = await getUserRole(user.uid)
       redirectByRole(router, role)
     } catch (error) {

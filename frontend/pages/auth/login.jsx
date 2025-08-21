@@ -8,6 +8,7 @@ import { useRouter } from 'next/router'
 import { FcGoogle } from 'react-icons/fc'
 import { doc, getDoc } from 'firebase/firestore'
 import { redirectByRole } from '../../utils/redirectByRole'
+import { devLog } from '../../utils/devLogger'
 
 export default function Login() {
   const router = useRouter()
@@ -18,7 +19,7 @@ export default function Login() {
     try {
       const result = await signInWithPopup(auth, provider)
       const user = result.user
-      console.log("Usuario autenticado:", user)
+      devLog('Usuario autenticado:', user)
       let role = null
       const snap = await getDoc(doc(db, 'users', user.uid))
       if (snap.exists()) {
@@ -41,7 +42,7 @@ export default function Login() {
     try {
       const result = await signInWithEmailAndPassword(auth, email, password)
       const user = result.user
-      console.log('Usuario autenticado:', user)
+      devLog('Usuario autenticado:', user)
       let role = null
       const snap = await getDoc(doc(db, 'users', user.uid))
       if (snap.exists()) {

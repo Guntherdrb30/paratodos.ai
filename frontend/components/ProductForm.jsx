@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { db, storage } from '../firebase/config'
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { devLog, devWarn } from '../utils/devLogger'
 
 export default function ProductForm({ onClose, productToEdit }) {
   const [codigo, setCodigo] = useState('')
@@ -45,7 +46,7 @@ export default function ProductForm({ onClose, productToEdit }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('ProductForm handleSubmit called', { codigo, nombre, precio, descripcion, categoria, stock, marca, proveedor })
+    devLog('ProductForm handleSubmit called', { codigo, nombre, precio, descripcion, categoria, stock, marca, proveedor })
     try {
       let imagenesUrls = [...imagenes]
 
@@ -65,7 +66,7 @@ export default function ProductForm({ onClose, productToEdit }) {
                 error.code === 'storage/retry-limit-exceeded' &&
                 attempt < retries
               ) {
-                console.warn(
+                devWarn(
                   `Reintentando subida de ${file.name}, intento ${attempt + 1}`
                 )
                 await new Promise((r) => setTimeout(r, 1000))

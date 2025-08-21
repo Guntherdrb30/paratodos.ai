@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { db, storage } from '../firebase/config'
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { useNotification } from './Notification'
+import { devError } from '../utils/devError'
 
 export default function ProductForm({ onClose, productToEdit }) {
   const [codigo, setCodigo] = useState('')
@@ -15,6 +17,7 @@ export default function ProductForm({ onClose, productToEdit }) {
   const [proveedor, setProveedor] = useState('')
   const [imagenes, setImagenes] = useState([])
   const [selectedFiles, setSelectedFiles] = useState([])
+  const notify = useNotification()
 
   useEffect(() => {
     setSelectedFiles([])
@@ -80,9 +83,10 @@ export default function ProductForm({ onClose, productToEdit }) {
           try {
             return await uploadFileWithRetry(file)
           } catch (err) {
-            console.error('Error subiendo imagen tras varios intentos:', err)
-            alert(
-              'Error subiendo la imagen después de varios intentos: ' + err.message
+            devError('Error subiendo imagen tras varios intentos:', err)
+            notify(
+              'Error subiendo la imagen después de varios intentos: ' + err.message,
+              'error'
             )
             return null
           }
@@ -98,11 +102,11 @@ export default function ProductForm({ onClose, productToEdit }) {
       } else {
         await addDoc(collection(db, 'products'), data)
       }
-      alert('Producto guardado correctamente')
+      notify('Producto guardado correctamente', 'success')
       onClose()
     } catch (error) {
-      console.error('Error guardando producto:', error)
-      alert('Error al guardar el producto: ' + error.message)
+      devError('Error guardando producto:', error)
+      notify('Error al guardar el producto: ' + error.message, 'error')
     }
   }
 

@@ -8,11 +8,14 @@ import { useRouter } from 'next/router'
 import { FcGoogle } from 'react-icons/fc'
 import { redirectByRole } from '../../utils/redirectByRole'
 import { getUserRole } from '../../utils/getUserRole'
+import { useNotification } from '../../components/Notification'
+import { devError } from '../../utils/devError'
 
 export default function Login() {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const notify = useNotification()
 
   const handleGoogleLogin = async () => {
     try {
@@ -22,7 +25,8 @@ export default function Login() {
       const role = await getUserRole(user.uid)
       redirectByRole(router, role)
     } catch (error) {
-      console.error("Error al iniciar sesión con Google:", error)
+      devError('Error al iniciar sesión con Google:', error)
+      notify('Error al iniciar sesión con Google: ' + error.message, 'error')
     }
   }
   const handleEmailLogin = async (e) => {
@@ -34,8 +38,8 @@ export default function Login() {
       const role = await getUserRole(user.uid)
       redirectByRole(router, role)
     } catch (error) {
-      console.error('Error al iniciar sesión con correo:', error)
-      alert('Error al iniciar sesión: ' + error.message)
+      devError('Error al iniciar sesión con correo:', error)
+      notify('Error al iniciar sesión: ' + error.message, 'error')
     }
   }
 

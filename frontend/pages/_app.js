@@ -2,13 +2,17 @@
 import '../styles/globals.css'
 import { AuthProvider } from '../context/AuthContext'
 import { CartProvider } from '../context/CartContext'
+import { NotificationProvider } from '../components/Notification'
 
 export default function App({ Component, pageProps }) {
   return (
     <AuthProvider>
       <CartProvider>
-        <Component {...pageProps} />
+        <NotificationProvider>
+          <Component {...pageProps} />
+        </NotificationProvider>
       </CartProvider>
     </AuthProvider>
   )
 }
+

@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
-import { auth, db } from '../firebase/config'
+import { auth } from '../firebase/config'
 import { onAuthStateChanged } from 'firebase/auth'
-import { doc, getDoc } from 'firebase/firestore'
+import { getUserRole } from '../utils/getUserRole'
 
 const AuthContext = createContext({
   user: null,
@@ -22,24 +22,8 @@ export function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, async user => {
       if (user) {
         setUser(user)
-        try {
-          let data = null
-          const refUsers = doc(db, 'users', user.uid)
-          const snapUsers = await getDoc(refUsers)
-          if (snapUsers.exists()) {
-            data = snapUsers.data()
-          } else {
-            const refUser = doc(db, 'user', user.uid)
-            const snapUser = await getDoc(refUser)
-            if (snapUser.exists()) {
-              data = snapUser.data()
-            }
-          }
-          setRole(data?.rol ?? data?.role ?? null)
-        } catch (error) {
-          console.error('Error obteniendo rol de usuario:', error)
-          setRole(null)
-        }
+        const role = await getUserRole(user.uid)
+        setRole(role)
       } else {
         setUser(null)
         setRole(null)

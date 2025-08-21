@@ -3,11 +3,11 @@ import Image from 'next/image'
 import { useState } from 'react'
 import Link from 'next/link'
 import { signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth'
-import { auth, provider, db } from '../../firebase/config'
+import { auth, provider } from '../../firebase/config'
 import { useRouter } from 'next/router'
 import { FcGoogle } from 'react-icons/fc'
-import { doc, getDoc } from 'firebase/firestore'
 import { redirectByRole } from '../../utils/redirectByRole'
+import { getUserRole } from '../../utils/getUserRole'
 
 export default function Login() {
   const router = useRouter()
@@ -19,18 +19,7 @@ export default function Login() {
       const result = await signInWithPopup(auth, provider)
       const user = result.user
       console.log("Usuario autenticado:", user)
-      let role = null
-      const snap = await getDoc(doc(db, 'users', user.uid))
-      if (snap.exists()) {
-        const data = snap.data()
-        role = data.rol ?? data.role ?? null
-      } else {
-        const snap2 = await getDoc(doc(db, 'user', user.uid))
-        if (snap2.exists()) {
-          const data2 = snap2.data()
-          role = data2.rol ?? data2.role ?? null
-        }
-      }
+      const role = await getUserRole(user.uid)
       redirectByRole(router, role)
     } catch (error) {
       console.error("Error al iniciar sesión con Google:", error)
@@ -42,18 +31,7 @@ export default function Login() {
       const result = await signInWithEmailAndPassword(auth, email, password)
       const user = result.user
       console.log('Usuario autenticado:', user)
-      let role = null
-      const snap = await getDoc(doc(db, 'users', user.uid))
-      if (snap.exists()) {
-        const data = snap.data()
-        role = data.rol ?? data.role ?? null
-      } else {
-        const snap2 = await getDoc(doc(db, 'user', user.uid))
-        if (snap2.exists()) {
-          const data2 = snap2.data()
-          role = data2.rol ?? data2.role ?? null
-        }
-      }
+      const role = await getUserRole(user.uid)
       redirectByRole(router, role)
     } catch (error) {
       console.error('Error al iniciar sesión con correo:', error)

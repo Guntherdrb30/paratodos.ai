@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { db } from '../firebase/config'
 import { doc, getDoc } from 'firebase/firestore'
 import { useCart } from '../context/CartContext'
+import { devError } from '../utils/devLog'
 
 export default function CartModule() {
   const { cartItems, updateQuantity, removeFromCart, totalPrice } = useCart()
@@ -20,7 +21,7 @@ export default function CartModule() {
           setErrorRate(new Error('No se encontró la tasa de cambio'))
         }
       } catch (err) {
-        console.error('Error cargando tasa de cambio:', err)
+        devError('Error cargando tasa de cambio:', err)
         setErrorRate(err)
       } finally {
         setLoadingRate(false)

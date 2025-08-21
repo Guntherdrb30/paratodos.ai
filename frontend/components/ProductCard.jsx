@@ -5,6 +5,7 @@ import { FiHeart, FiShare2 } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
 import { db } from '../firebase/config'
 import { doc, getDoc } from 'firebase/firestore'
+import { devError } from '../utils/devLog'
 
 export default function ProductCard({ product }) {
   const { addToCart } = useCart()
@@ -49,7 +50,7 @@ export default function ProductCard({ product }) {
       localStorage.setItem('favorites', JSON.stringify(updated))
       setLiked(!liked)
     } catch (error) {
-      console.error('Error actualizando favoritos', error)
+      devError('Error actualizando favoritos', error)
     }
   }
 
@@ -65,7 +66,7 @@ export default function ProductCard({ product }) {
         alert('Enlace copiado al portapapeles')
       }
     } catch (error) {
-      console.error('Error compartiendo', error)
+      devError('Error compartiendo', error)
     }
   }
 

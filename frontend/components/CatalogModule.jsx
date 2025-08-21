@@ -3,6 +3,7 @@ import { db } from '../firebase/config'
 import { collection, getDocs } from 'firebase/firestore'
 import ProductCard from './ProductCard'
 import { categories as navCategories, navStructure } from './Navbar'
+import { devError } from '../utils/devLog'
 
 export default function CatalogModule({ category: propCategory = '', onCategoryChange }) {
 
@@ -25,7 +26,7 @@ export default function CatalogModule({ category: propCategory = '', onCategoryC
         const items = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
         setProducts(items)
       } catch (err) {
-        console.error('Error cargando productos:', err)
+        devError('Error cargando productos:', err)
         setError(err)
       } finally {
         setLoading(false)

@@ -3,6 +3,7 @@ import LayoutRoot from '../../../../components/LayoutRoot'
 import { useAuth } from '../../../../context/AuthContext'
 import { db } from '../../../../firebase/config'
 import { collection, getDocs, doc, updateDoc } from 'firebase/firestore'
+import { devError } from '../../../../utils/devLog'
 
 export default function CommissionConfigPage() {
   const { role } = useAuth()
@@ -38,7 +39,7 @@ export default function CommissionConfigPage() {
       )
       alert('Porcentajes de comisión guardados')
     } catch (error) {
-      console.error(error)
+      devError(error)
       alert('Error al guardar configuración: ' + error.message)
     }
   }

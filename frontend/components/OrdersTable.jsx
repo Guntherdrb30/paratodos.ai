@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { db } from '../firebase/config'
 import { collection, onSnapshot, updateDoc, doc, getDoc } from 'firebase/firestore'
+import { devError } from '../utils/devLog'
 
 const STATUSES = [
   'Pendiente',
@@ -45,7 +46,7 @@ export default function OrdersTable() {
       }
       await updateDoc(doc(db, 'orders', orderId), { status: newStatus })
     } catch (error) {
-      console.error('Error actualizando estado de orden:', error)
+      devError('Error actualizando estado de orden:', error)
       alert('Error actualizando estado: ' + error.message)
     }
   }

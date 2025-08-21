@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { db, storage } from '../firebase/config'
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
+import { devError } from '../utils/devLog'
 
 export default function ProductForm({ onClose, productToEdit }) {
   const [codigo, setCodigo] = useState('')
@@ -80,7 +81,7 @@ export default function ProductForm({ onClose, productToEdit }) {
           try {
             return await uploadFileWithRetry(file)
           } catch (err) {
-            console.error('Error subiendo imagen tras varios intentos:', err)
+            devError('Error subiendo imagen tras varios intentos:', err)
             alert(
               'Error subiendo la imagen después de varios intentos: ' + err.message
             )
@@ -101,7 +102,7 @@ export default function ProductForm({ onClose, productToEdit }) {
       alert('Producto guardado correctamente')
       onClose()
     } catch (error) {
-      console.error('Error guardando producto:', error)
+      devError('Error guardando producto:', error)
       alert('Error al guardar el producto: ' + error.message)
     }
   }

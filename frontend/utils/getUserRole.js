@@ -1,5 +1,6 @@
 import { db } from '../firebase/config'
 import { doc, getDoc } from 'firebase/firestore'
+import { devError } from './devLog'
 
 export async function getUserRole(userId) {
   try {
@@ -20,7 +21,7 @@ export async function getUserRole(userId) {
 
     return data?.rol ?? data?.role ?? null
   } catch (error) {
-    console.error('Error obteniendo rol de usuario:', error)
+    devError('Error obteniendo rol de usuario:', error)
     return null
   }
 }

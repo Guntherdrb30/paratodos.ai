@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
+import { devError } from '../utils/devLog'
 
 const CartContext = createContext()
 
@@ -14,7 +15,7 @@ export function CartProvider({ children }) {
         setCartItems(JSON.parse(stored))
       }
     } catch (error) {
-      console.error('Error loading cart from localStorage', error)
+      devError('Error loading cart from localStorage', error)
     }
   }, [])
 
@@ -22,7 +23,7 @@ export function CartProvider({ children }) {
     try {
       localStorage.setItem('cart', JSON.stringify(cartItems))
     } catch (error) {
-      console.error('Error saving cart to localStorage', error)
+      devError('Error saving cart to localStorage', error)
     }
   }, [cartItems])
 

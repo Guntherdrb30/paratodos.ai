@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 import * as XLSX from 'xlsx'
 import { FaSearch, FaFileExcel, FaFilePdf } from 'react-icons/fa'
+import { devError } from '../utils/devLog'
 
 
 export default function InventoryTable() {
@@ -60,7 +61,7 @@ export default function InventoryTable() {
       setProducts(data)
       setFiltered(data)
     } catch (err) {
-      console.error('Error fetching products:', err)
+      devError('Error fetching products:', err)
     }
   }
 
@@ -114,7 +115,7 @@ export default function InventoryTable() {
       setProductSales(data.sales)
       setProductSalesTotals({ totalQuantity: data.totalQuantity, totalAmount: data.totalAmount })
     } catch (err) {
-      console.error('Error fetching product sales:', err)
+      devError('Error fetching product sales:', err)
     }
   }
 

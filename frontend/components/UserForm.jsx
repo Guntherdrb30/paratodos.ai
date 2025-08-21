@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { db } from '../firebase/config'
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'
+import { devError } from '../utils/devLog'
 
 export default function UserForm({ onClose, userToEdit }) {
   const { role: authRole } = useAuth()
@@ -39,7 +40,7 @@ export default function UserForm({ onClose, userToEdit }) {
       alert('Usuario guardado correctamente')
       onClose()
     } catch (error) {
-      console.error('Error guardando usuario:', error)
+      devError('Error guardando usuario:', error)
       alert('Error al guardar el usuario: ' + error.message)
     }
   }

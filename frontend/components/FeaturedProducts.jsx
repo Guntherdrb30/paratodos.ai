@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { db } from '../firebase/config'
 import { collection, query, limit, getDocs } from 'firebase/firestore'
 import ProductCard from './ProductCard'
+import { devError } from '../utils/devLog'
 
 export default function FeaturedProducts() {
   const [products, setProducts] = useState([])
@@ -14,7 +15,7 @@ export default function FeaturedProducts() {
         const items = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
         setProducts(items)
       } catch (error) {
-        console.error('Error cargando productos destacados:', error)
+        devError('Error cargando productos destacados:', error)
       }
     }
     fetchFeatured()

@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth, db } from '../../firebase/config'
 import { doc, setDoc } from 'firebase/firestore'
+import { devError } from '../../utils/devLog'
 
 export default function Register() {
   const router = useRouter()
@@ -22,7 +23,7 @@ export default function Register() {
       alert('Registro completado. Ya puedes iniciar sesión como cliente de la tienda.')
       router.push('/auth/login')
     } catch (error) {
-      console.error('Error registrando usuario:', error)
+      devError('Error registrando usuario:', error)
       alert('Error al registrarse: ' + error.message)
     }
   }

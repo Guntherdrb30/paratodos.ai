@@ -3,6 +3,7 @@ import LayoutRoot from '../../../components/LayoutRoot'
 import { db } from '../../../firebase/config'
 import { useAuth } from '../../../context/AuthContext'
 import { doc, getDoc, setDoc, collection, getDocs, updateDoc } from 'firebase/firestore'
+import { devError } from '../../../utils/devLog'
 
 export default function ConfiguracionPage() {
   const [rate, setRate] = useState('')
@@ -65,7 +66,7 @@ export default function ConfiguracionPage() {
       )
       alert('Porcentajes de comisión guardados')
     } catch (error) {
-      console.error(error)
+      devError(error)
       alert('Error al guardar comisiones: ' + error.message)
     }
   }

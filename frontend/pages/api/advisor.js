@@ -17,6 +17,7 @@ export default async function handler(req, res) {
   const { Configuration, OpenAIApi } = await import('openai')
   const config = new Configuration({ apiKey: process.env.OPENAI_API_KEY })
   const openai = new OpenAIApi(config)
+  const { devError } = await import('../../utils/devLog')
 
   try {
     const completion = await openai.createChatCompletion({
@@ -30,7 +31,7 @@ export default async function handler(req, res) {
     const reply = completion.data.choices[0].message.content
     res.status(200).json({ response: reply })
   } catch (error) {
-    console.error('OpenAI API error:', error)
+    devError('OpenAI API error:', error)
     res.status(500).json({ error: error.message || 'OpenAI API error' })
   }
 }

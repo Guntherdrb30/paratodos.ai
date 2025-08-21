@@ -5,6 +5,7 @@ import { collection, getDocs } from 'firebase/firestore'
 import { FaFileExcel, FaFilePdf } from 'react-icons/fa'
 import * as XLSX from 'xlsx'
 import ProviderDetailModal from './ProviderDetailModal'
+import { devError } from '../utils/devLog'
 
 export default function ProvidersModule() {
   const { role, loading: authLoading } = useAuth()
@@ -33,7 +34,7 @@ export default function ProvidersModule() {
         setProviders(provSnap.docs.map((d) => ({ id: d.id, ...d.data() })))
         setInvoices(invSnap.docs.map((d) => ({ id: d.id, ...d.data() })))
       } catch (err) {
-        console.error('Error fetching providers:', err)
+        devError('Error fetching providers:', err)
         setError(err)
       } finally {
         setLoading(false)

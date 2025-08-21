@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import LayoutAdmin from '../../../../components/LayoutAdmin'
+import { devError } from '../../../../utils/devLog'
 
 export default function ProductDetailPage() {
   const router = useRouter()
@@ -42,7 +43,7 @@ export default function ProductDetailPage() {
             stock_minimo: data.stock_minimo || 0
           })
         })
-        .catch((err) => console.error(err))
+        .catch((err) => devError(err))
         .finally(() => setLoading(false))
     }
   }, [id])
@@ -56,7 +57,7 @@ export default function ProductDetailPage() {
           setTotalQuantity(data.totalQuantity)
           setTotalAmount(data.totalAmount)
         })
-        .catch((err) => console.error('Error fetching product sales:', err))
+        .catch((err) => devError('Error fetching product sales:', err))
     }
   }, [product])
 
@@ -73,7 +74,7 @@ export default function ProductDetailPage() {
       alert('Producto actualizado correctamente')
       router.back()
     } catch (err) {
-      console.error(err)
+      devError(err)
       alert('Error al actualizar producto')
     } finally {
       setSaving(false)
@@ -85,7 +86,7 @@ export default function ProductDetailPage() {
       await axios.post('/api/compras', { productId: id })
       alert('Solicitud de compra enviada')
     } catch (err) {
-      console.error(err)
+      devError(err)
       alert('Error al enviar solicitud de compra')
     }
   }

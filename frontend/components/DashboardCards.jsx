@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { FaShoppingCart, FaBoxOpen, FaUsers, FaProjectDiagram } from 'react-icons/fa'
 import { db } from '../firebase/config'
 import { collection, getDocs } from 'firebase/firestore'
+import { devError } from '../utils/devLog'
 
 export default function DashboardCards() {
   const [data, setData] = useState({ ventas: 0, productos: 0, usuarios: 0, proyectos: 0 })
@@ -22,7 +23,7 @@ export default function DashboardCards() {
           proyectos: proyectosSnap.size,
         })
       } catch (error) {
-        console.error('Error fetching dashboard counts:', error)
+        devError('Error fetching dashboard counts:', error)
       }
     }
     fetchCounts()

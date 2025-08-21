@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
 import { db } from '../firebase/config'
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore'
+import { devError } from '../utils/devLog'
 
 export default function ProviderForm({ onClose, providerToEdit }) {
   const { role } = useAuth()
@@ -51,7 +52,7 @@ export default function ProviderForm({ onClose, providerToEdit }) {
       alert('Proveedor guardado correctamente')
       onClose()
     } catch (error) {
-      console.error('Error guardando proveedor:', error)
+      devError('Error guardando proveedor:', error)
       alert('Error al guardar el proveedor: ' + error.message)
     }
   }

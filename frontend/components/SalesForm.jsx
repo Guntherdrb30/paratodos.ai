@@ -11,6 +11,7 @@ import {
 } from 'firebase/firestore'
 import axios from 'axios'
 import { FaSearch, FaTimes } from 'react-icons/fa'
+import { devError } from '../utils/devLog'
 
 export default function SalesForm({ onClose }) {
   const { user } = useAuth()
@@ -43,7 +44,7 @@ export default function SalesForm({ onClose }) {
         const prodsList = prodsSnap.docs.map((d) => ({ id: d.id, ...d.data() }))
         setAllProducts(prodsList)
       } catch (err) {
-        console.error('Error fetching products from Firestore:', err)
+        devError('Error fetching products from Firestore:', err)
       }
     }
     init()

@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { auth } from '../../firebase/config'
+import { devError } from '../../utils/devLog'
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState('')
@@ -14,7 +15,7 @@ export default function ForgotPassword() {
       await sendPasswordResetEmail(auth, email)
       alert('Se envió un correo de restablecimiento de contraseña. Revisa tu bandeja de entrada.')
     } catch (error) {
-      console.error('Error enviando correo de restablecimiento:', error)
+      devError('Error enviando correo de restablecimiento:', error)
       alert('Error al enviar correo de restablecimiento: ' + error.message)
     }
   }

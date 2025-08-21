@@ -6,6 +6,7 @@ import { useCart } from '../../context/CartContext'
 import { db, storage } from '../../firebase/config'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { devError } from '../../utils/devLog'
 
 export default function PaymentVerificationPage() {
   const [pendingOrder, setPendingOrder] = useState(null)
@@ -63,7 +64,7 @@ export default function PaymentVerificationPage() {
       alert('Orden enviada correctamente. ¡Gracias!')
       router.push('/')
     } catch (error) {
-      console.error('Error al enviar orden:', error)
+      devError('Error al enviar orden:', error)
       alert('Ocurrió un error al enviar la orden')
     } finally {
       setSubmitting(false)

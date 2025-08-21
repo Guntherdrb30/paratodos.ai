@@ -7,6 +7,7 @@ import { useCart } from '../../context/CartContext'
 import { FiHeart } from 'react-icons/fi'
 import { db } from '../../firebase/config'
 import { doc, getDoc } from 'firebase/firestore'
+import { devError } from '../../utils/devLog'
 
 export default function ProductDetailPage() {
   const router = useRouter()
@@ -30,7 +31,7 @@ export default function ProductDetailPage() {
         const rateSnap = await getDoc(rateRef)
         setRate(rateSnap.exists() ? rateSnap.data().value : null)
       } catch (error) {
-        console.error('Error cargando detalle de producto:', error)
+        devError('Error cargando detalle de producto:', error)
       } finally {
         setLoading(false)
       }

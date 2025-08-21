@@ -20,12 +20,25 @@ export default function ProductForm({ onClose, productToEdit }) {
     setSelectedFiles([])
     if (productToEdit) {
       setNombre(productToEdit.nombre ?? '')
-      setPrecio(productToEdit.precio ?? '')
+      setPrecio(
+        productToEdit.precio !== undefined && productToEdit.precio !== null
+          ? productToEdit.precio.toString()
+          : ''
+      )
       setDescripcion(productToEdit.descripcion ?? '')
       setCategoria(productToEdit.categoria ?? '')
       setCodigo(productToEdit.codigo ?? productToEdit.id ?? '')
-      setStock(productToEdit.stock ?? '')
-      setStockMinimo(productToEdit.stock_minimo ?? '')
+      setStock(
+        productToEdit.stock !== undefined && productToEdit.stock !== null
+          ? productToEdit.stock.toString()
+          : ''
+      )
+      setStockMinimo(
+        productToEdit.stock_minimo !== undefined &&
+        productToEdit.stock_minimo !== null
+          ? productToEdit.stock_minimo.toString()
+          : ''
+      )
       setMarca(productToEdit.marca ?? '')
       setProveedor(productToEdit.proveedor ?? '')
       setImagenes(productToEdit.imagenes ?? [])
@@ -47,6 +60,11 @@ export default function ProductForm({ onClose, productToEdit }) {
     e.preventDefault()
     console.log('ProductForm handleSubmit called', { codigo, nombre, precio, descripcion, categoria, stock, marca, proveedor })
     try {
+      // Parse numeric fields before sending to Firestore
+      const precioNumber = parseFloat(precio)
+      const stockNumber = parseInt(stock, 10)
+      const stockMinimoNumber = parseInt(stockMinimo, 10)
+
       let imagenesUrls = [...imagenes]
 
       if (selectedFiles.length > 0) {
@@ -92,7 +110,18 @@ export default function ProductForm({ onClose, productToEdit }) {
         imagenesUrls = [...imagenesUrls, ...newUrls]
       }
 
-      const data = { codigo, nombre, precio, descripcion, categoria, stock, stock_minimo: stockMinimo, marca, proveedor, imagenes: imagenesUrls }
+      const data = {
+        codigo,
+        nombre,
+        precio: precioNumber,
+        descripcion,
+        categoria,
+        stock: stockNumber,
+        stock_minimo: stockMinimoNumber,
+        marca,
+        proveedor,
+        imagenes: imagenesUrls,
+      }
       if (productToEdit) {
         await updateDoc(doc(db, 'products', productToEdit.id), data)
       } else {
